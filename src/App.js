@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import './style/App.css';
+/* import pages */
+import Homepage from './pages/Homepage.js';
+import Help from './pages/Help.js';
+import About from './pages/About.js';
+import Navbar from './components/NavBar.js';
+/* special library and its components to perform redirection easily */
+import {
+  BrowserRouter as Router, // store the components and its routes as an object
+  Route, // a statement that holds the specific path of the app and the component's name, renders it once it matches the URL
+  Switch, // renders the default components once the app rendered, switches between routes as needed
+  Link, // like HREF in HTML but also allows you to redirect to the specific component based on its path
+  Redirect,
+  useParams,
+  useRouteMatch
+} from "react-router-dom"; // more about that here: https://www.pluralsight.com/guides/how-to-set-react-router-default-route-redirect-to-home
+
+// try localhost:3000/help to check how it works
+// NavBar is here so that it always shows up no matter which page is that
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar/>
+      <Router>
+        <Switch>
+          <Route exact path="/" component={Homepage} />
+          <Route path="/help" component={Help} />
+          <Route path="/about" component={About} />
+        </Switch>
+      </Router>
     </div>
   );
 }
