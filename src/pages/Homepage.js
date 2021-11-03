@@ -9,10 +9,13 @@ import React from 'react';
 const Homepage = ({
 }) => {
   return(
-    <div className="homepage">
-      <div className="paragraph1">
-        <p>This is our homepage.</p>
-      </div>
+    <div className="homeBG">
+        {/* need to add bg image, link? */}
+
+        <div className="information">
+            <h1 className="subtopic text">How can you create your own family tree?</h1>
+            <p className="description text">Description of how to create a family tree</p>     
+        </div>
     </div>
   );
 }
