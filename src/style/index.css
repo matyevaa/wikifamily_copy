@@ -5,9 +5,71 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  background-color: #cab69d;  /*added*/
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* start adding code here */
+.imageContainer {
+  background-color: #9f8469;                      /*double check colors*/
+  padding: 40px;                                    /*probably ch depending logo size*/
+}
+.navbar {
+  position:absolute;
+  font-weight: normal;
+  font-size: 25px;        /*will probably change depending on logo size*/
+
+  top: 15px;              /*will probably change depending on logo size*/
+  left: 80px;             /*will probably change depending on logo size*/
+}
+.nav_list {
+  position:fixed;
+  display: inline-flex;
+  list-style-type: none;
+  
+}
+#nav_item a {
+  margin: 10px 30px 10px 30px;
+  color: #cab69d;
+  text-decoration: none;
+}
+#nav_item a:hover {
+  color: #a0c2b2;
+  text-decoration:underline;
+}
+.accountContainer {
+  display: inline-flex;
+    position: absolute;
+    right: 100px;
+    top: 45px;
+    margin-left: 10px;
+}
+.loginStat {
+  border-radius: 15px;                            /*idk how to make the (login | sign up) shape one whole piece*/
+  background-image: linear-gradient(#a0c2b2, white);   /*gradient up (green) down (white)*/
+  padding: 5px 20px 5px 20px;
+  box-shadow: none;
+  border-color: rgb(31, 30, 30);
+}
+/* .homeBG {
+  background-color: #cab69d;                      /*double check colors
+} 
+*/
+.information {
+  margin:20px 50px 20px 70px;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.27);   /*doule check colors*/
+  position: fixed;
+  
+}
+.subtopic {
+  font-size: 25px;
+}
+.text {
+  color: #67635e;                                 /*double check colors*/
 }
