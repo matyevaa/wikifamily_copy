@@ -81,7 +81,7 @@ code {
 
 /* content for homepage */
 .bgImgContainer {
-  height: 700px;
+  height: 1100px;
   float: right;
   margin-top: 90px;
 }
@@ -90,7 +90,7 @@ code {
   /* couldnt figure out how to add img external css, have it inline */
   /* find a way to have the image fixed in certain part of screen while not
      covering the text */
-  height: 700px;
+  height: 1100px;
   background-repeat: no-repeat;
 }
 .information {
