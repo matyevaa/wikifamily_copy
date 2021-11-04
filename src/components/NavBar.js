@@ -1,12 +1,11 @@
 import React from 'react';
-// import logo from '/public/logo192.png';
 
 const Navbar = ({
 }) => {
-  return(  
+  return(
     <div className="nav">
         <div className="imageContainer">
-          <img className="logo"  src={'/public/logo192.png'} alt ="WikiFamily logo"/>
+          <img className="logo"  src="/logo192_70x70.png" alt="wikiFamily Logo" />
         </div>
         <div className="navbar">
             <ul className="nav_list">
@@ -17,11 +16,8 @@ const Navbar = ({
         </div>
 
         <div className="accountContainer">
-       {/* <div className="accountContainer" role="group" aria-label="account options"></div> 
-       bootstrap has a group button option "button group"  */}
-            <button type="button" className="loginStat">Login</button>
-            <button type="button" className="loginStat">Sign Up</button>
-             {/* if the buttons are going to be rounded, should we round the information bg (transparent)  */}
+            <button type="button" className="loginStat leftButton">Login</button>
+            <button type="button" className="loginStat rightButton">Sign Up</button>
       </div>
     </div>
   );
