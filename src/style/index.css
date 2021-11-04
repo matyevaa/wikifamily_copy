@@ -15,9 +15,10 @@ code {
 }
 
 /* start adding code here */
+/* navbar content */
 .imageContainer {
   background-color: #9f8469;                      /*double check colors*/
-  padding: 40px;                                    /*probably ch depending logo size*/
+  padding: 20px;                                    /*probably ch depending logo size*/
 }
 .navbar {
   position:absolute;
@@ -28,7 +29,7 @@ code {
   left: 80px;             /*will probably change depending on logo size*/
 }
 .nav_list {
-  position:fixed;
+  position: absolute;
   display: inline-flex;
   list-style-type: none;
   
@@ -42,6 +43,7 @@ code {
   color: #a0c2b2;
   text-decoration:underline;
 }
+/* login formatting */
 .accountContainer {
   display: inline-flex;
     position: absolute;
@@ -50,22 +52,60 @@ code {
     margin-left: 10px;
 }
 .loginStat {
-  border-radius: 15px;                            /*idk how to make the (login | sign up) shape one whole piece*/
+  border-radius: 15px;                          
   background-image: linear-gradient(#a0c2b2, white);   /*gradient up (green) down (white)*/
   padding: 5px 20px 5px 20px;
   box-shadow: none;
-  border-color: rgb(31, 30, 30);
+  width: 130px;
+  color: #1e1813;
+  font-weight: 700;
 }
-/* .homeBG {
-  background-color: #cab69d;                      /*double check colors
-} 
-*/
+.leftButton {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  border-right-color: #1e1813;
+}
+.rightButton {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  border-left-color: #1e181300;
+}
+.rightButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#769888, white);
+}
+.leftButton:hover {
+  cursor: pointer;
+  background-image: linear-gradient(#769888, white);
+}
+
+/* content for homepage */
+.bgImgContainer {
+  height: 700px;
+  float: right;
+  margin-top: 90px;
+}
+.bgImg {
+  /* background-image: url("/familyTree.png"); */
+  /* couldnt figure out how to add img external css, have it inline */
+  /* find a way to have the image fixed in certain part of screen while not
+     covering the text */
+  height: 700px;
+  background-repeat: no-repeat;
+}
 .information {
   margin:20px 50px 20px 70px;
   padding: 20px;
-  background-color: rgba(255, 255, 255, 0.27);   /*doule check colors*/
-  position: fixed;
-  
+  /* background-color: rgba(255, 255, 255, 0.475);*/
+  position: absolute;
+  width: 1100px;
+  border-radius: 15px;
+}
+.Topic {
+  background-color: rgba(255, 255, 255, 0.475);
+    padding: 20px 40px;
+    border-radius: 15px;
+    margin: 40px;
 }
 .subtopic {
   font-size: 25px;
