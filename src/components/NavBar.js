@@ -7,6 +7,9 @@ const Navbar = ({
         <div className="imageContainer">
           <img className="logo"  src="/logo192_70x70.png" alt="wikiFamily Logo" />
         </div>
+
+        {/* add div and css so pages and accContainer dont overlap in resize screen */}
+
         <div className="navbar">
             <ul className="nav_list">
             <li id="nav_item" className="active"><a href="/">Home</a></li>
