@@ -1,6 +1,7 @@
 import './style/App.css';
 /* import pages */
 import Homepage from './pages/Homepage.js';
+import Create from './pages/Create.js';
 import Help from './pages/Help.js';
 import About from './pages/About.js';
 import Navbar from './components/NavBar.js';
@@ -25,6 +26,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/" component={Homepage} />
+          <Route path="/create" component={Create} />
           <Route path="/help" component={Help} />
           <Route path="/about" component={About} />
         </Switch>
