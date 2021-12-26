@@ -1,4 +1,53 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from 'axios';
+
+function Test() {
+  console.log("fetching");
+  const [myData, setMyData] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async() => {
+      const result = await axios ('/create', {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json'}
+      }).catch(err => console.log(err));
+
+      console.log("Data from MySQL: ", result.data);
+      setMyData(result.data);
+    };
+    fetchData();
+  }, []);
+  console.log("Outside data", myData);
+
+  return (
+    <div>
+      <table className="result_table">
+        <thead>
+          <tr>
+             <td>id</td>
+             <td>First Name</td>
+             <td>Last Name</td>
+             <td>Info</td>
+             <td>Gender</td>
+             <td>In family with id #</td>
+          </tr>
+        </thead>
+        <tbody>
+        {myData.map((item, idx) => (
+          <tr key={idx}>
+            <td>{item.individual_id}</td>
+            <td>{item.first_name}</td>
+            <td>{item.last_name}</td>
+            <td>{item.info}</td>
+            <td>{item.gender}</td>
+            <td>{item.family_id_FK}</td>
+          </tr>
+        ))}
+        </tbody>
+       </table>
+    </div>
+  );
+}
 
 
 const Create = ({
@@ -12,6 +61,7 @@ const Create = ({
                                               Ea pro quidam tractatos, per iudico laoreet no, lucilius tacimates et usu. Duo ne amet senserit, has at illud voluptaria, nibh probatus ut vim. Tota idque nullam ne has, in error eloquentiam nec, usu ferri pertinacia efficiendi cu. Cetero alterum liberavisse vim an, accumsan qualisque constituam ad eos, his et erant graeci. Eos ea quando partem nominavi.
                                               Sea cibo suscipiantur te. Eu atqui clita mei. Cum ut dolorum abhorreant. Nec inani menandri ex, habeo menandri nec ut.
       </p>
+      <Test/>
     </div>
   );
 }

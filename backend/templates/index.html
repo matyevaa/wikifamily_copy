@@ -1,0 +1,24 @@
+<html>
+<head></head>
+<body style="background-color:green;">
+
+<table border="3" width="500px" height="200px" align="center" style="text-align:center; color:white; table-layout:fixed;">
+  <tr>
+     <td>id</td>
+     <td>First Name</td>
+     <td>Last Name</td>
+     <td>Info</td>
+     <td>Gender</td>
+     <td>In family with id #</td>
+  </tr>
+  {% for item in data %}
+  <tr>
+    {% for d in item %}
+     <td>{{d}}</td>
+     {% endfor%}
+  </tr>
+  {% endfor %}
+ </table>
+
+</body>
+</html>
