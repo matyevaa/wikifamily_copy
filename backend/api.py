@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for
 from flask import jsonify
 from flask import request
 from flask_cors import CORS, cross_origin
@@ -29,17 +29,30 @@ def get_family():
         json_data.append(dict(zip(row_headers, result)))
     return json.dumps(json_data)
 
-#@app.route('/create', methods=['POST'])
-#def add_person():
-#    cur = mysql.get_db().cursor()
-#    name = request.get_json()['name']
+@app.route('/create', methods=['GET','POST'])
+def add_person():
+    msg = ''
+    if request.method=='POST':
+        theform = request.get_json(force=True)
+        fn = theform['first_name']
+        ls = theform['last_name']
+        i = theform['info']
+        g = theform['gender']
+        fi = theform['family_id_FK']
+        cursor.execute('SELECT * FROM individual WHERE first_name = %s', (fn,))
+        result = cursor.fetchone()
+        if result:
+            msg = 'Such a person already exists in your family!'
+        elif result is None:
+            cursor.execute('''INSERT INTO individual (first_name, last_name, info, gender, family_id_FK) VALUES (%s,%s,%s,%s,%s)''', (fn, ls, i, g, fi))
+            cnx.commit()
+            msg = "Successfully added a person!"
+    else:
+        msg = "Please fill out the form."
+    print("Message: ", msg)
+    return redirect(url_for('get_family'))
 
-#    cur.execute("INSERT INTO db_family.family (name) VALUES ('" + str(name) + "')")
-#    mysql.connection.commit()
-#    result = {'name':name}
-#
-#    return jsonify({"result": result})
-#
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)

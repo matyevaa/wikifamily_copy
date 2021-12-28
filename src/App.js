@@ -5,6 +5,8 @@ import Create from './pages/Create.js';
 import Help from './pages/Help.js';
 import About from './pages/About.js';
 import Navbar from './components/NavBar.js';
+import AddPerson from './components/AddPerson.js';
+
 /* special library and its components to perform redirection easily */
 import {
   BrowserRouter as Router, // store the components and its routes as an object
@@ -29,6 +31,7 @@ function App() {
           <Route path="/create" component={Create} />
           <Route path="/help" component={Help} />
           <Route path="/about" component={About} />
+          <Route path="/add" component={AddPerson} />
         </Switch>
       </Router>
     </div>

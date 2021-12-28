@@ -17,7 +17,7 @@ body {
 
 /* navigation bar general container */
 .nav {
-  background-color: #f6f6f6;                      /*double check colors*/
+  background-color: #f6f6f6;
   display: flex;
   position: fixed;
   align-items: center;
@@ -93,5 +93,25 @@ li a:hover {
   font-size: 25px;
 }
 .text {
-  color: black;                                 /*double check colors*/
+  color: black;
+}
+
+
+/* add person button */
+.add_btn {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.class_btn {
+  margin: 2rem;
+}
+
+.add_btn:hover {
+  background-color: #f2f2f2;
 }
