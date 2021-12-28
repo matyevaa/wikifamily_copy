@@ -97,8 +97,8 @@ li a:hover {
 }
 
 
-/* add person button */
-.add_btn {
+/* CRUD person button */
+.add_btn{
   text-decoration: none;
   background-color: white;
   color: black;
@@ -112,6 +112,17 @@ li a:hover {
   margin: 2rem;
 }
 
-.add_btn:hover {
+.edit_btn, .del_btn {
+  text-decoration: none;
+  background-color: white;
+  color: black;
+  text-align: center;
+  padding: 1px;
+  margin: 2px;
+  cursor: pointer;
+  border: 1px solid black;
+}
+
+.add_btn:hover, .edit_btn:hover, .del_btn:hover {
   background-color: #f2f2f2;
 }

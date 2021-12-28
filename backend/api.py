@@ -53,6 +53,37 @@ def add_person():
     return redirect(url_for('get_family'))
 
 
+@app.route('/delete/<individual_id>', methods=['DELETE'])
+def delete_person(individual_id):
+    print("HEREEEE", individual_id)
+    msg = ''
+    id = individual_id
+    cursor.execute('DELETE FROM individual WHERE individual_id = %s', (id,))
+    cnx.commit()
+    msg = "Successfully deleted person!"
+    print(msg)
+    print("Person id is %s ", id)
+    return redirect(url_for('get_family'))
+
+
+@app.route('/edit/<individual_id>', methods=['POST'])
+def edit_person(individual_id):
+    msg = ''
+    if request.method=='POST':
+        theform = request.get_json(force=True)
+        fn = theform['first_name']
+        ls = theform['last_name']
+        i = theform['info']
+        g = theform['gender']
+        fi = theform['family_id_FK']
+        query = 'UPDATE individual SET first_name=%s last_name=%s, info=%s, gender=%s, family_id_FK=%s WHERE individual_id = %s'
+        data = (fn, ls, i, g, fi,)
+        cursor.execute(query, data)
+        cnx.commit()
+        msg = "Successfully updated person!"
+        print(msg)
+        return redirect(url_for('get_family'))
+
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', debug=True)
