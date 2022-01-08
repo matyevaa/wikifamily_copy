@@ -16,11 +16,12 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "(set PORT=3005 || export PORT=3005) && react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-flask-api": "cd backend && flask run"
+    "start-flask-api": "cd backend && flask run",
+    "start-backend": "cd backendLogin && env/bin/flask run"
   },
   "eslintConfig": {
     "extends": [
