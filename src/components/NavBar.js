@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
+import axios from "axios";
 
 /* we may need to make nav bar responsive:
  * depending on the screen size, the nav bar options and login btns turns into
@@ -6,6 +7,27 @@ import React from 'react';
 
 const Navbar = ({
 }) => {
+  const [userInfo, setUserInfo] = useState(false);
+
+  useEffect(() => {
+    checkLoginStat();
+  }, []);
+
+  //workds
+  const checkLoginStat = async() => {
+    const result = await axios ('/login', {
+      mode: "no-cors",
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    console.log(result);
+
+    setUserInfo(result.data);
+
+    console.log(userInfo);
+  };
+
+// Add conditional for if logged in see name and sign out option
   return(
     <div className="nav">
         <div className="navLogo">
@@ -19,12 +41,14 @@ const Navbar = ({
             <li id="nav_item"><a href="/about">About</a></li>
           </ul>
         </div>
+
         <div className="accountContainer">
-          <button type="button" className="accountBtns leftButton">Login</button>
-          <button type="button" className="accountBtns rightButton">Sign Up</button>
-        </div>
+            <button type="button" className="accountBtns leftButton"><a href="/login">Login</a></button>
+            <button type="button" className="accountBtns rightButton"><a href="http://localhost:3000/logout">Logout</a></button>
+          </div>
     </div>
   );
+  
 }
 
 export default Navbar;
