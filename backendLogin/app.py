@@ -59,21 +59,6 @@ def load_user(user_id):
 # For Facebook
 facebook_blueprint.storage = SQLAlchemyStorage(OAuth, db.session, user=current_user)
 
-# @oauth_authorized.connect_via(facebook_blueprint)
-# @app.route('/name')
-# def getUserName():
-#     return current_user.name
-
-# @oauth_authorized.connect_via(facebook_blueprint)
-# @app.route('/id')
-# def getUserId():
-#     return current_user.id
-
-# @oauth_authorized.connect_via(facebook_blueprint)
-# @app.route('/email')
-# def getUserEmail():
-#     return current_user.email
-
 @app.route('/facebook/login', methods=['GET'], strict_slashes=False)
 @cross_origin()
 def newLogin():
@@ -198,24 +183,27 @@ def google_error(blueprint, message, response):
 def idk():
     return redirect('http://localhost:3005')
 
-
-@app.route("/login", methods=['GET','POST'])
-def idx():
-    # send url for login ????????
-    # return redirect('http://localhost:5000')
+@app.route("/isLoggedIn", methods=['GET','POST'])
+def IsLoggedIn():
     if current_user.is_authenticated:
-        userInfo = []
-        userInfo.append(current_user.name)
-        userInfo.append(current_user.id)
-        userInfo.append(current_user.email)
-
-        print(userInfo)
-        return json.dumps(userInfo)
+        print("true")
+        return 'true'
     else:
-    # return render_template('temp.html')
-        userInfo = []
-        userInfo.append('NotLoggedIn')
-        return json.dumps(userInfo)
+        print("false")
+        return 'false'
+
+@app.route("/info", methods=['GET','POST'])
+def idx():
+    userInfo = []
+    if current_user.is_authenticated:
+        userInfo = [{"name": current_user.name, "id": current_user.id, "email": current_user.email}]
+
+        
+    else:
+        userInfo = [{"name": "NotLoggedIn", "id": "NotLoggedIn", "email": "NotLoggedIn"}]
+    
+    print(userInfo)    
+    return json.dumps(userInfo)
 
 @app.route("/logout")
 @login_required
@@ -223,7 +211,6 @@ def logout():
     logout_user()
     print("logged out")
 
-    # return redirect(url_for('idx'))
     return 'loggedOut'
 
 if __name__ == '__main__':
