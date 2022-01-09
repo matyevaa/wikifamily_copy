@@ -27,6 +27,15 @@ const Navbar = ({
     console.log(userInfo);
   };
 
+  const facebookLogout = async() => {
+    const result = await axios ('/logout', {
+      mode: "cors",
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    console.log(result);
+  };
+
 // Add conditional for if logged in see name and sign out option
   return(
     <div className="nav">
@@ -44,7 +53,7 @@ const Navbar = ({
 
         <div className="accountContainer">
             <button type="button" className="accountBtns leftButton"><a href="/login">Login</a></button>
-            <button type="button" className="accountBtns rightButton"><a href="http://localhost:3000/logout">Logout</a></button>
+            <button type="button" className="accountBtns rightButton" onClick={facebookLogout}>Logout</button>
           </div>
     </div>
   );
