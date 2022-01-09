@@ -7,16 +7,21 @@ import axios from "axios";
 
 function Navbar(props) {
   const [dataDB, setData] = useState();
+  const [userInfo, setUserInfo] = useState([]);
 
   // returns the user data (full name ID and email)
-    const userInfo = async() => {
+    const getUserInfo = async() => {
       const userData = await axios ('/info', {
         mode: "no-cors",
         headers: { 'Content-Type': 'application/json'}
       })
       .catch(err => console.log(err));
 
-      console.log("inside userInfo, name: " + userData.data['0']['name'] + " " + userData.data['0']['id'] + " " + userData.data['0']['email']);
+      console.log("inside getUserInfo, name: " + userData.data['0']['name'] + " " + userData.data['0']['id'] + " " + userData.data['0']['email']);
+      console.log(userData.data['0']);
+      let temp = [userData.data['0']['name'], userData.data['0']['id'], userData.data['0']['email']];
+      setUserInfo(temp);
+      console.log("in gettingUserData: " + userInfo);
     };
 
     const facebookLogout = async() => {
@@ -41,17 +46,20 @@ function Navbar(props) {
 
     const renderAuthButton = () => {
       loggedIn();
+      
       console.log("in renderAuthButton " + dataDB);
+      console.log("should output: " + userInfo)
 
       if (dataDB == false) {
         console.log("Was not logged in");
         return  <button type="button" className="accountBtns leftButton"><a href="/login">Login</a></button>;
       } else {
         console.log("Was logged in");
-        return <button type="button" className="accountBtns rightButton"  onClick={() => {
-          facebookLogout();
-          handleLogout();
-        }}>Logout</button>
+        return <div>
+          <p>Welcome {userInfo[0]}</p>
+          <button type="button" className="accountBtns rightButton"  
+          onClick={() => { facebookLogout(); handleLogout(); }}>Logout</button>
+        </div>
       }
     }
 
@@ -76,7 +84,7 @@ function Navbar(props) {
              </div>
     
             <div className="accountContainer">
-            <button type="button" onClick={userInfo}>see info</button>
+            <button type="button" onClick={getUserInfo}>see info</button>
               {renderAuthButton()}
             </div>
          </div>
