@@ -48,25 +48,6 @@ const Login = () => {
     console.log(result)
   };
 
-  // const facebookLogin = async() => {
-  //   const result = await axios ('http://localhost:3000/facebook/login', {
-  //     method: 'GET',
-  //     mode: 'cors',
-  //     headers: { 'Content-Type': 'application/json'}
-  //   })
-  //   .catch(err => console.log(err));
-  //   console.log(result)
-  // };
-
-  const facebookLogin = async() => {
-    const result = await axios('/facebook/login', {
-          method: 'GET',
-          headers: { 'Content-Type': 'application/json'}
-        });
-    console.log(result)
-
-  };
-
   //workds
   const facebookLogout = async() => {
     const result = await axios ('/logout', {
@@ -78,7 +59,8 @@ const Login = () => {
 
   return (
     <div className="content">
-      <button type="button" onClick={facebookLogin}>Facebook</button>
+      {/* <button type="button" onClick={facebookLogin}>Facebook</button> */}
+      <button type="button"><a href="http://localhost:3000/facebook/login">Facebook</a></button>
       <button type="button" onClick={facebookLogout}>logout</button>
       <button type="button" onClick={checkLogin}>see info</button>
     </div>
