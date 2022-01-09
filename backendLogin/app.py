@@ -194,7 +194,11 @@ def google_error(blueprint, message, response):
     print("error oauth")
 
 # @login_required
-@app.route("/")
+@app.route("/", methods=['GET','POST'])
+def idk():
+    return redirect('http://localhost:3005')
+
+
 @app.route("/login", methods=['GET','POST'])
 def idx():
     # send url for login ????????
@@ -212,20 +216,6 @@ def idx():
         userInfo = []
         userInfo.append('NotLoggedIn')
         return json.dumps(userInfo)
-
-@app.route("/info")
-@login_required
-def getAllInfo():
-    print(current_user.name)
-    print(current_user.is_authenticated)
-    print(current_user)
-    userInfo = []
-    userInfo.append(current_user.name)
-    userInfo.append(current_user.id)
-    userInfo.append(current_user.email)
-
-    print(userInfo)
-    return json.dumps(userInfo)
 
 @app.route("/logout")
 @login_required
