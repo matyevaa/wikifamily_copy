@@ -6,7 +6,8 @@ export default function FamilyTree({ treeElements}) {
         //<div>
         //    {treeElements.length} 
         //</div>
-        treeElements.map(treeElement => {
+
+       treeElements.map(treeElement => {
             return <TreeElement key={treeElement.id} treeElement = {treeElement} />
         })
 

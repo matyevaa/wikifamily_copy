@@ -9,6 +9,7 @@ import Navbar from './components/NavBar.js';
 import AddPerson from './components/AddPerson.js';
 // import EditPerson from './components/EditPerson.js';
 import FamilyTree from './components/FamilyTree.js';
+import TreeElement from './components/TreeElement.js'
 import React, { useState } from 'react'; 
 
 /* special library and its components to perform redirection easily */
@@ -26,10 +27,8 @@ import {
 // NavBar is here so that it always shows up no matter which page is that
 
 function App() {
-  const [treeElements, updateTree] = useState([]) 
   return (
     <div>
-      <FamilyTree treeElements={treeElements}/> 
       <Navbar/>
       <Router>
         <Switch>

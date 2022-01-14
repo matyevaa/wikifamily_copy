@@ -3,7 +3,9 @@ import React from 'react'
 export default function TreeElement({ treeElement }) {
     return (
         <div>
-            {treeElement.firstName}
+            <label>
+                {treeElement.firstName + " "+ treeElement.lastName}
+            </label> 
         </div>
     )
 }

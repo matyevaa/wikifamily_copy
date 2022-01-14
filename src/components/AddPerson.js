@@ -1,7 +1,8 @@
 import React, {useState, useEffect, useRef} from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
-//import FamilyTree from './FamilyTree'; //I added thi
+import FamilyTree from './FamilyTree'; 
+import TreeElement from './TreeElement'
 
 
 const AddPerson = () => {
@@ -37,7 +38,7 @@ const AddPerson = () => {
   const genderRef = useRef()
   const familyIDRef = useRef()
 
-  function handleAddPerson(e){
+  function handleAddPerson(e){ 
     const firstName = firstNameRef.current.value  
     const lastName = lastNameRef.current.value
     const desc = descRef.current.value
@@ -48,14 +49,67 @@ const AddPerson = () => {
     
     updateTree(prevTreeElements => {
       return [...prevTreeElements, {id: 1, firstName: firstName, lastName: lastName, description: desc, gender: gender, familyID: familyID}]
+      
     })
     console.log(firstName)
+    console.log(lastName)
+
+
     firstNameRef.current.value = null
     lastNameRef.current.value = null
     descRef.current.value = null
     genderRef.current.value = null
     familyIDRef.current.value = null
+
     
+
+
+
+  }
+
+  function createFamilyMember(){
+  <html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type"content="text/html; charset=utf-8"/>
+		<meta name="viewport"content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no"/>
+		<title>Binary Tree Structure</title>
+		<link href="style/style.css"rel="stylesheet"type="text/css"/>
+    <button type="button">Click Me!</button>
+	
+  </head>
+	<body>
+
+ 
+
+		<div class="container">
+			<div class="row">
+				<div class="tree">
+					<ul>
+						<li> <a href="#"><span contenteditable="true">Parent</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button> </a>
+						<ul>
+							<li><a href="#"><span contenteditable="true">Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a>
+							<ul>
+								<li> <a href="#"><span contenteditable="true">Grand Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a> </li>
+								<li> <a href="#"><span contenteditable="true">Grand Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a> </li>
+							</ul>
+						</li>
+						<li> <a href="#"><span contenteditable="true">Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a>
+						<ul>
+							<li> <a href="#"><span contenteditable="true">Grand Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a> </li>
+							<li> <a href="#"><span contenteditable="true">Grand Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a> </li>
+							<li> <a href="#"><span contenteditable="true">Grand Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a> </li>
+              
+						</ul>
+					</li>
+					<li><a href="#"><span contenteditable="true">Child</span><div contenteditable="true">DOB</div> <button type="button">Add/Edit</button></a></li>
+				</ul>
+			</li>
+		</ul>
+	</div>
+</div>
+</div>
+</body>
+</html>      
   }
     
 
@@ -94,6 +148,8 @@ const AddPerson = () => {
 
           <button className="add_btn" type="submit"  onClick={handleAddPerson}>Add Person</button>
       </form>
+
+      <FamilyTree treeElements={treeElements}/>
     </div>
   );
 }
