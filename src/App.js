@@ -3,11 +3,12 @@ import './style/App.css';
 import Homepage from './pages/Homepage.js';
 import Create from './pages/Create.js';
 import Help from './pages/Help.js';
+import Login from './pages/Login.js';
 import About from './pages/About.js';
 import Navbar from './components/NavBar.js';
 import AddPerson from './components/AddPerson.js';
-import EditPerson from './components/EditPerson.js';
-import FamilyTree from './components/FamilyTree.js'; 
+// import EditPerson from './components/EditPerson.js';
+import FamilyTree from './components/FamilyTree.js';
 import React, { useState } from 'react'; 
 
 /* special library and its components to perform redirection easily */
@@ -37,7 +38,8 @@ function App() {
           <Route path="/help" component={Help} />
           <Route path="/about" component={About} />
           <Route path="/add" component={AddPerson} />
-          <Route path="/edit/:id" component={EditPerson} />
+          <Route path="/login" component={Login} />
+          {/* <Route path="/edit/:id" component={EditPerson} /> */}
         </Switch>
       </Router>
     </div>
