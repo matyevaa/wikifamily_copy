@@ -54,9 +54,11 @@ function Navbar(props) {
         console.log("Was not logged in");
         return  <button type="button" className="accountBtns leftButton"><a href="/login">Login</a></button>;
       } else {
-        console.log("Was logged in");
+        console.log("Was logged in: " + userInfo[0]);
+        // getUserInfo(); // workds but makes api go into infinite loop
         return <div>
-          <p>Welcome {userInfo[0]}</p>
+          {/* <p>Welcome {userInfo[0]}</p> */}
+          <button className='accountBtns' onClick={getUserInfo}>Welcome {userInfo[0]}!</button>
           <button type="button" className="accountBtns rightButton"  
           onClick={() => { facebookLogout(); handleLogout(); }}>Logout</button>
         </div>
@@ -68,23 +70,33 @@ function Navbar(props) {
       setData(false);
       console.log("after " + dataDB);
     }
+
+    const navBarConditon = () => {
+      loggedIn();
+
+      if (dataDB != false) {
+        console.log("should show create tree");
+        return <li id="nav_item"><a href="/create">CreateTree</a></li>
+      }
+    }
   
   return (
           <div className="nav">
             <div className="navLogo">
               <img className="logo"  src="/logo192_70x70.png" alt="wikiFamily Logo" />
             </div>
+
             <div className="navLinks">
               <ul className="nav_list">
                 <li id="nav_item" className="active"><a href="/">Home</a></li>
-                <li id="nav_item"><a href="/create">CreateTree</a></li>
+                {navBarConditon()}
                 <li id="nav_item"><a href="/help">Help</a></li>
                 <li id="nav_item"><a href="/about">About</a></li>
-               </ul>
-             </div>
+              </ul>
+            </div>
     
             <div className="accountContainer">
-            <button type="button" onClick={getUserInfo}>see info</button>
+            {/* <button type="button" onClick={getUserInfo}>see info</button> */}
               {renderAuthButton()}
             </div>
          </div>
