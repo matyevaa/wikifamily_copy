@@ -12,16 +12,17 @@ const Create = () => {
   }, []);
 
   const getData = async() => {
-    const result = await axios ('/create', {
+    const result = await axios ('/api1/create', {
       headers: { 'Content-Type': 'application/json'}
     })
     .catch(err => console.log(err));
+    console.log("getData: " + result);
     setData(result.data);
   };
   console.log("Get Data:", dataDB);
 
   const delData = async(individual_id) => {
-    await axios.delete (`/delete/${individual_id}`, {
+    await axios.delete ('/api1/delete/${individual_id}', {
       headers: { 'Content-Type': 'application/json'}
     })
     .catch(err => console.log(err));
@@ -64,7 +65,7 @@ const Create = () => {
             <td>{item.gender}</td>
             <td>{item.family_id_FK}</td>
             <td>
-              <Link to={`/edit/${item.individual_id}`} className="edit_btn">Edit</Link>
+              <Link to={`edit/${item.individual_id}`} className="edit_btn">Edit</Link>
               <button onClick={ () => delData(item.individual_id) } className="del_btn">Delete</button>
             </td>
           </tr>
