@@ -11,7 +11,7 @@ function Navbar(props) {
 
   // returns the user data (full name ID and email)
     const getUserInfo = async() => {
-      const userData = await axios ('/info', {
+      const userData = await axios ('/api2/info', {
         mode: "no-cors",
         headers: { 'Content-Type': 'application/json'}
       })
@@ -25,7 +25,7 @@ function Navbar(props) {
     };
 
     const facebookLogout = async() => {
-      const result = await axios ('/logout', {
+      const result = await axios ('/api2/logout', {
         // mode: "cors",
         headers: { 'Content-Type': 'application/json'}
       })
@@ -34,7 +34,7 @@ function Navbar(props) {
     };
 
     const loggedIn = async() => {
-      const result = await axios ('/isLoggedIn', {
+      const result = await axios ('/api2/isLoggedIn', {
         mode: "cors",
         headers: { 'Content-Type': 'application/json'}
       })
