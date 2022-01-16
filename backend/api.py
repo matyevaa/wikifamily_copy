@@ -11,9 +11,9 @@ cors = CORS(app)
 
 cnx = mysql.connector.connect(
     host = 'localhost',
-    user = 'wikiNew',
+    user = 'wikifamily_user',
     password = 'wikipassword',
-    database = 'newWikifamily_db',
+    database = 'wikifamily_db',
     auth_plugin = 'mysql_native_password'
     )
 
