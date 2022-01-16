@@ -10,7 +10,7 @@ const Login = () => {
   }, []);
 
   const checkLogin = async() => {
-    const result = await axios ('/login', {
+    const result = await axios ('/api2/login', {
       mode: "no-cors",
       headers: { 'Content-Type': 'application/json'}
     })
@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   const facebookLogout = async() => {
-    const result = await axios ('/logout', {
+    const result = await axios ('/api2/logout', {
       mode: "cors",
       headers: { 'Content-Type': 'application/json'}
     })
@@ -27,10 +27,22 @@ const Login = () => {
     console.log(result);
   };
 
+  // const facebookLogin = async() => {
+  //   console.log("inside trying to log in");
+  //   const result = await axios ('/api2/facebook/login', {
+  //     mode: "no-cors",
+  //     headers: { 'Content-Type': 'application/json'}
+  //   })
+  //   .catch(err => console.log(err));
+  //   console.log(result);
+  // };
+
   return (
     <div className="content">
-      <button type="button"><a href="http://localhost:3000/facebook/login">Facebook</a></button>
-      <button type="button"><a href="http://localhost:3000/google/login">Google</a></button>
+      <button type="button"><a href="http://localhost:3000/api2/facebook/login">Facebook</a></button>
+      <button type="button"><a href="http://localhost:3000/api2/google/login">Google</a></button>
+
+      {/* <button type="button" onClick={facebookLogin}>Facebook</button> */}
       <button type="button" onClick={facebookLogout}>logout</button>
       <button type="button" onClick={checkLogin}>see info</button>
     </div>
