@@ -11,15 +11,15 @@ cors = CORS(app)
 
 cnx = mysql.connector.connect(
     host = 'localhost',
-    user = 'wikifamily_user',
+    user = 'wikiNew',
     password = 'wikipassword',
-    database = 'wikifamily_db',
+    database = 'newWikifamily_db',
     auth_plugin = 'mysql_native_password'
     )
 
 cursor = cnx.cursor()
 
-@app.route('/create', methods=['GET'])
+@app.route('/api1/create', methods=['GET'])
 def get_family():
     cursor.execute("SELECT * FROM individual")
     row_headers = [x[0] for x in cursor.description]
@@ -29,7 +29,7 @@ def get_family():
         json_data.append(dict(zip(row_headers, result)))
     return json.dumps(json_data)
 
-@app.route('/create', methods=['GET','POST'])
+@app.route('/api1/create', methods=['GET','POST'])
 def add_person():
     msg = ''
     if request.method=='POST':
@@ -53,7 +53,7 @@ def add_person():
     return redirect(url_for('get_family'))
 
 
-@app.route('/delete/<individual_id>', methods=['DELETE'])
+@app.route('/api1/delete/<individual_id>', methods=['DELETE'])
 def delete_person(individual_id):
     print("HEREEEE", individual_id)
     msg = ''
@@ -66,7 +66,7 @@ def delete_person(individual_id):
     return redirect(url_for('get_family'))
 
 
-@app.route('/edit/<individual_id>', methods=['POST'])
+@app.route('/api1/edit/<individual_id>', methods=['POST'])
 def edit_person(individual_id):
     msg = ''
     if request.method=='POST':
@@ -86,4 +86,4 @@ def edit_person(individual_id):
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', debug=True)
+    app.run(debug=True, port=5000)
