@@ -32,11 +32,11 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////Users/daisy/wikiFam/backend/login.db'
 
 # for Facebook
-facebook_blueprint = make_facebook_blueprint(client_id="REMOVED", client_secret="REMOVED")
+facebook_blueprint = make_facebook_blueprint(client_id="", client_secret="")
 app.register_blueprint(facebook_blueprint, url_prefix="/auth/facebook/wikifam")
 
 # for Google
-google_blueprint = make_google_blueprint(client_id="REMOVED", client_secret="REMOVED", scope=['https://www.googleapis.com/auth/userinfo.email', 'openid', 'https://www.googleapis.com/auth/userinfo.profile'])
+google_blueprint = make_google_blueprint(client_id="", client_secret="", scope=['https://www.googleapis.com/auth/userinfo.email', 'openid', 'https://www.googleapis.com/auth/userinfo.profile'])
 app.register_blueprint(google_blueprint, url_prefix="/auth")
 
 db = SQLAlchemy(app)
@@ -59,8 +59,8 @@ def load_user(user_id):
 # For Facebook
 facebook_blueprint.storage = SQLAlchemyStorage(OAuth, db.session, user=current_user)
 
-@app.route('/facebook/login', methods=['GET'], strict_slashes=False)
-@cross_origin()
+@app.route('/api2/facebook/login', methods=['GET', 'POST'], strict_slashes=False)
+# @cross_origin()
 def newLogin():
     return redirect(url_for('facebook.login'))
 
@@ -117,7 +117,7 @@ def facebook_error(blueprint, message, response):
 # For Google
 google_blueprint.storage = SQLAlchemyStorage(OAuth, db.session, user=current_user)
 
-@app.route('/google/login')
+@app.route('/api2/google/login')
 def newLoginGoogle():
     return redirect(url_for('google.login'))
 
@@ -179,11 +179,12 @@ def google_error(blueprint, message, response):
     print("error oauth")
 
 # @login_required
+@app.route("/api2/", methods=['GET','POST'])
 @app.route("/", methods=['GET','POST'])
 def idk():
     return redirect('http://localhost:3005')
 
-@app.route("/isLoggedIn", methods=['GET','POST'])
+@app.route("/api2/isLoggedIn", methods=['GET','POST'])
 def IsLoggedIn():
     if current_user.is_authenticated:
         print("true")
@@ -192,7 +193,7 @@ def IsLoggedIn():
         print("false")
         return 'false'
 
-@app.route("/info", methods=['GET','POST'])
+@app.route("/api2/info", methods=['GET','POST'])
 def idx():
     userInfo = []
     if current_user.is_authenticated:
@@ -205,7 +206,7 @@ def idx():
     print(userInfo)    
     return json.dumps(userInfo)
 
-@app.route("/logout")
+@app.route("/api2/logout")
 @login_required
 def logout():
     logout_user()
