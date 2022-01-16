@@ -10,7 +10,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 cnx = mysql.connector.connect(
-    host = 'localhost',
+    host = '0.0.0.0',
     user = 'wikifamily_user',
     password = 'wikipassword',
     database = 'wikifamily_db',
