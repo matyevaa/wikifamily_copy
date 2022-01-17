@@ -10,7 +10,7 @@ app = Flask(__name__)
 cors = CORS(app)
 
 cnx = mysql.connector.connect(
-    host = '0.0.0.0',
+    host = 'localhost',
     user = 'wikifamily_user',
     password = 'wikipassword',
     database = 'wikifamily_db',
@@ -19,7 +19,7 @@ cnx = mysql.connector.connect(
 
 cursor = cnx.cursor()
 
-@app.route('/api1/create', methods=['GET'])
+@app.route('/api1/create', methods=['GET', 'DELETE'])
 def get_family():
     cursor.execute("SELECT * FROM individual")
     row_headers = [x[0] for x in cursor.description]
