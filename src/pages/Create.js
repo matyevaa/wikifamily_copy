@@ -12,7 +12,7 @@ const Create = () => {
   }, []);
 
   const getData = async() => {
-    const result = await axios ('/api1/create', {
+    const result = await axios (`/api1/create`, {
       headers: { 'Content-Type': 'application/json'}
     })
     .catch(err => console.log(err));
@@ -22,7 +22,8 @@ const Create = () => {
   console.log("Get Data:", dataDB);
 
   const delData = async(individual_id) => {
-    await axios.delete ('/api1/delete/${individual_id}', {
+    console.log("In Delete, individual_id is ", individual_id);
+    await axios.delete (`http://localhost:5000/api1/delete/${individual_id}`, {
       headers: { 'Content-Type': 'application/json'}
     })
     .catch(err => console.log(err));
