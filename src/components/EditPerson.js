@@ -1,23 +1,27 @@
 import React, {useState, useEffect} from 'react';
 import { useHistory } from "react-router-dom";
 import axios from 'axios';
+import { useParams, Link } from "react-router-dom";
 
+const EditPerson = (props) => {
 
-const EditPerson = () => {
-
+  const [dataDB, setData] = useState([]);
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [info, setInfo] = useState("");
   const [gender, setGender] = useState("");
   const [family_id_FK, setFamily_id] = useState("");
-  //const { id } = useParams();
+  //const { individual_id } = useParams();
+
+  const individual_id = props.match.params.id;
+  console.log("Id of the person ", individual_id);
 
   const history = useHistory();
-/*
-  const editPerson = async(e) => {
+
+  const handleFormSubmit = async(e) => {
     e.preventDefault();
-    await axios.patch(`/create/${individual_id}`, {
-      method: 'POST',
+    await axios.put(`http://localhost:5000/api1/edit/${individual_id}`, {
+      method: 'PUT',
       headers: { 'Content-Type': 'application/json'},
       first_name: first_name,
       last_name: last_name,
@@ -28,25 +32,24 @@ const EditPerson = () => {
     history.push("/create");
   }
 
-*/
-/*
   useEffect(() => {
     getPersonById();
   }, []);
 
   const getPersonById = async() => {
-    const result = await axios (`/create/${id}`, {
+    console.log("ind id: ", individual_id);
+    const result = await axios (`http://localhost:5000/api1/create/${individual_id}`, {
       headers: { 'Content-Type': 'application/json'}
     })
     .catch(err => console.log(err));
     setData(result.data);
   };
   console.log("Get Person By Id:", dataDB);
-*/
+
 
   return (
     <div>
-      <form id="target" method="POST" action="{{url_for('create')}}" encType="multipart/form-data">
+      <form id="target" onSubmit={handleFormSubmit} method="PUT" action="{{url_for('create')}}" encType="multipart/form-data">
 
         <div>
           <label>First Name</label>
@@ -73,6 +76,7 @@ const EditPerson = () => {
           <input type="text" placeholder="Family id" name="family_id_FK" value={family_id_FK} onChange={(e) => setFamily_id(e.target.value)}/>
         </div>
 
+          <Link className="link" to="/create">Back to Create Tree</Link>
           <button className="edit_btn" type="submit">Edit Person</button>
       </form>
     </div>

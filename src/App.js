@@ -7,10 +7,10 @@ import Login from './pages/Login.js';
 import About from './pages/About.js';
 import Navbar from './components/NavBar.js';
 import AddPerson from './components/AddPerson.js';
-// import EditPerson from './components/EditPerson.js';
+import EditPerson from './components/EditPerson.js';
 import FamilyTree from './components/FamilyTree.js';
 import TreeElement from './components/TreeElement.js'
-import React, { useState } from 'react'; 
+import React, { useState } from 'react';
 
 /* special library and its components to perform redirection easily */
 import {
@@ -38,7 +38,7 @@ function App() {
           <Route path="/about" component={About} />
           <Route path="/add" component={AddPerson} />
           <Route path="/login" component={Login} />
-          {/* <Route path="/edit/:id" component={EditPerson} /> */}
+          <Route path="/edit/:id" component={EditPerson} render={(props) => <EditPerson {...props}/>} />
         </Switch>
       </Router>
     </div>

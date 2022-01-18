@@ -19,7 +19,7 @@ cnx = mysql.connector.connect(
 
 cursor = cnx.cursor()
 
-@app.route('/api1/create', methods=['GET', 'DELETE'])
+@app.route('/api1/create', methods=['GET', 'DELETE', 'PUT'])
 def get_family():
     cursor.execute("SELECT * FROM individual")
     row_headers = [x[0] for x in cursor.description]
@@ -55,7 +55,6 @@ def add_person():
 
 @app.route('/api1/delete/<individual_id>', methods=['DELETE'])
 def delete_person(individual_id):
-    print("HEREEEE", individual_id)
     msg = ''
     id = individual_id
     cursor.execute('DELETE FROM individual WHERE individual_id = %s', (id,))
@@ -65,24 +64,36 @@ def delete_person(individual_id):
     print("Person id is %s ", id)
     return redirect(url_for('get_family'))
 
+@app.route('/api1/create/<individual_id>', methods=['GET'])
+def get_individual(individual_id):
+    id = individual_id
+    cursor.execute("SELECT * FROM individual WHERE individual_id = %s", (id,))
+    row_headers = [x[0] for x in cursor.description]
+    data = cursor.fetchall()
+    json_data = []
+    for result in data:
+        json_data.append(dict(zip(row_headers, result)))
+    return json.dumps(json_data)
 
-@app.route('/api1/edit/<individual_id>', methods=['POST'])
+@app.route('/api1/edit/<individual_id>', methods=['PUT', 'PATCH'])
 def edit_person(individual_id):
+    id = individual_id
     msg = ''
-    if request.method=='POST':
-        theform = request.get_json(force=True)
-        fn = theform['first_name']
-        ls = theform['last_name']
-        i = theform['info']
-        g = theform['gender']
-        fi = theform['family_id_FK']
-        query = 'UPDATE individual SET first_name=%s last_name=%s, info=%s, gender=%s, family_id_FK=%s WHERE individual_id = %s'
-        data = (fn, ls, i, g, fi,)
-        cursor.execute(query, data)
-        cnx.commit()
-        msg = "Successfully updated person!"
-        print(msg)
-        return redirect(url_for('get_family'))
+    theform = request.get_json(force=True)
+    print("EDIT")
+    fn = theform['first_name']
+    ls = theform['last_name']
+    i = theform['info']
+    g = theform['gender']
+    fi = theform['family_id_FK']
+    query = 'UPDATE individual SET first_name=%s, last_name=%s, info=%s, gender=%s, family_id_FK=%s WHERE individual_id = %s'
+    data = (fn, ls, i, g, fi,id,)
+    cursor.execute(query, data)
+    print("HEREEE")
+    cnx.commit()
+    msg = "Successfully updated person!"
+    print(msg)
+    return redirect(url_for('get_family'))
 
 
 if __name__ == "__main__":

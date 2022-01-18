@@ -4,6 +4,10 @@ body {
   padding: 40px;
 }
 
+.link {
+  margin-right: 20px;
+}
+
 .result_table {
   text-align: center;
   table-layout: fixed;

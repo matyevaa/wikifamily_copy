@@ -21,6 +21,14 @@ const Create = () => {
   };
   console.log("Get Data:", dataDB);
 
+  const getIndividual = async(individual_id) => {
+    const result = await axios (`/api1/create/${individual_id}`, {
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .catch(err => console.log(err));
+    console.log("getData: " + result);
+  };
+
   const delData = async(individual_id) => {
     console.log("In Delete, individual_id is ", individual_id);
     await axios.delete (`http://localhost:5000/api1/delete/${individual_id}`, {
@@ -29,6 +37,17 @@ const Create = () => {
     .catch(err => console.log(err));
     getData();
   };
+
+  const updateData = async(individual_id) => {
+    console.log("In Update, individual_id is ", individual_id);
+    await axios.put (`http://localhost:5000/api1/put/${individual_id}`, {
+      headers: { 'Content-Type': 'application/json'}
+    })
+    .then(response => setData(response.data))
+    .catch(err => console.log(err));
+  };
+
+
 
 
 
