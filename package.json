@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start-flask-api": "cd backend && flask run",
-    "start-backend": "cd backendLogin && env/bin/flask run"
+    "start-backend": "cd backendLogin && python app.py"
   },
   "eslintConfig": {
     "extends": [
